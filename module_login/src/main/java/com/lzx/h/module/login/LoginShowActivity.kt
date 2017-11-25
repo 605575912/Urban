@@ -28,6 +28,6 @@ class LoginShowActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         var loginview = viewDataBinding as LoginShowlayoutBinding
         loginview.presenter = LoginShowPresenter(activity)
-        ImageUtils.loadWebpImage("asset:///50.webp", loginview.image)
+        ImageUtils.loadWebpImage("asset:///100.webp", loginview.image)
     }
 }

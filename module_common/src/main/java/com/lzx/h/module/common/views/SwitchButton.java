@@ -61,6 +61,7 @@ public class SwitchButton extends View implements Checkable {
         super.setPadding(0, 0, 0, 0);
     }
 
+
     /**
      * 初始化参数
      */

@@ -2,10 +2,12 @@ package com.lzx.h.module.login
 
 import android.app.Activity
 import android.view.View
+import android.widget.RadioButton
 import com.lzx.h.module.common.DefaultDialog
 import com.lzx.h.module.common.DefaultLinstener
 import com.lzx.h.module.common.UserPreferences
 import com.lzx.h.module.common.web.WebActivity
+import com.squareup.lib.HttpUtils
 import com.squareup.lib.utils.ToastUtils
 
 /**
@@ -27,12 +29,24 @@ class RegisterPresenter constructor(activity: Activity) {
         WebActivity.StartActivity(activity, "http://hd.youyuan.com//html/protocol/index.html?protocol=交友赚钱")
     }
 
-    fun womenonclick(view: View) {
+    fun registeronclick(view: View) {
         var dialog = DefaultDialog()
         dialog.showLoading(activity, object : DefaultLinstener() {
 
 
         })
+        HttpUtils.INSTANCE.getAsynThreadHttp("file:///android_asset/", String::class.java, object : HttpUtils.HttpListener {
+            override fun failed(model: Any?) {
+            }
+
+            override fun success(model: Any?, data: String?) {
+            }
+        })
+
+    }
+
+    fun womenonclick(view: View) {
+        view as RadioButton
 //        RegisterActivity.StartActivity(activity)
 //        activity.finish()
 
