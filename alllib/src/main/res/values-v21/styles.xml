@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ActivityTheme" parent="Base.V7.Theme.AppCompat">
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+
+        <item name="isLightTheme">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+
+        <!--<item name="android:background">@color/colorAccent</item>-->
+    </style>
+</resources>

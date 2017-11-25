@@ -1,0 +1,77 @@
+if (isModule.toBoolean()) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
+apply plugin: 'kotlin-android'
+android {
+    compileSdkVersion project.compileSdkVersion
+    buildToolsVersion project.buildToolsVersion
+    defaultConfig {
+        if (isModule.toBoolean()) {
+        } else {
+            applicationId "com.lzx.h.module.login"
+        }
+        minSdkVersion Integer.parseInt(project.minSdkVersion)
+        targetSdkVersion Integer.parseInt(project.targetSdkVersion)
+//        multiDexEnabled true
+        versionCode 1
+        versionName "1.0"
+        //ARouter
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [moduleName: project.getName()]
+//            }
+//        }
+        //ARouter kotlin
+        kapt {
+            arguments {
+                arg("moduleName", project.getName())
+            }
+        }
+    }
+    dataBinding {
+        enabled true
+    }
+    repositories {
+        flatDir {
+            dirs 'libs', '../alllib/src/main/libs'
+        }
+    }
+    sourceSets {
+        main {
+            if (isModule.toBoolean()) {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                //集成开发模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude 'debug/**'
+                }
+            } else {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    kapt {
+        generateStubs = true
+    }
+
+    configurations {
+        provided.exclude group: 'com.android.support', module: 'support-v4:21.0.3'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    kapt "com.android.databinding:compiler:$project.databindingcompiler"
+    kapt "com.alibaba:arouter-compiler:$project.aroutercompiler"
+    testImplementation 'junit:junit:4.12'
+
+    api project(':module_common')
+}

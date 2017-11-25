@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'com.antfortune.freeline'
+//apply plugin: 'com.jakewharton.hugo'
+
+
+android {
+    compileSdkVersion project.compileSdkVersion
+    buildToolsVersion project.buildToolsVersion
+    defaultConfig {
+        applicationId "com.lzx.h.urban"
+        minSdkVersion Integer.parseInt(project.minSdkVersion)
+        targetSdkVersion Integer.parseInt(project.targetSdkVersion)
+//        multiDexEnabled true
+        versionCode 1
+        versionName "1.0"
+        //ARouter
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [moduleName: project.getName()]
+//            }
+//        }
+        //ARouter kotlin
+        kapt {
+            arguments {
+                arg("moduleName", project.getName())
+            }
+        }
+    }
+    dataBinding {
+        enabled true
+    }
+    repositories {
+        flatDir {
+            dirs 'src/main/libs', '../alllib/src/main/libs'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    kapt {
+        generateStubs = true
+    }
+    configurations {
+        provided.exclude group: 'com.android.support', module: 'support-v4:21.0.3'
+    }
+//    hugo {
+//        enabled true
+//    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    kapt "com.android.databinding:compiler:$project.databindingcompiler"
+    //    compile 'com.android.support:appcompat-v7:27.0.1'
+    testImplementation 'junit:junit:4.12'
+    api project(':alllib')
+    //    implementation project(':SVGVector')
+    //    compile 'com.facebook.stetho:stetho:1.5.0'
+    //    compile 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+    //    implementation project(':android-pluginmgr')
+    kapt "com.alibaba:arouter-compiler:$project.aroutercompiler"
+//    if (isModule.toBoolean()) {
+        implementation project(':module_login')
+//    }
+    implementation project(':module_common')
+}

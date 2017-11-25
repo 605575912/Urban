@@ -1,0 +1,144 @@
+apply plugin: 'com.android.library'
+// 依赖插件脚本
+apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion project.compileSdkVersion
+    buildToolsVersion project.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion Integer.parseInt(project.minSdkVersion)
+        targetSdkVersion Integer.parseInt(project.targetSdkVersion)
+        multiDexEnabled true
+//        ndk {
+//            // 设置支持的SO库架构
+//            abiFilters 'armeabi-v7a' //, 'x86','armeabi', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+//        }
+//        ndk {
+//            //选择要添加的对应cpu类型的.so库。
+//            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a','x86', 'x86_64', 'mips', 'mips64'
+//            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+//            manifestPlaceholders = [
+//                    XG_ACCESS_ID:"2100250470",
+//                    XG_ACCESS_KEY:"A1R8TBS289UE",
+//            ]
+//        }
+        //ARouter kotlin
+        kapt {
+            arguments {
+                arg("moduleName", project.getName())
+            }
+        }
+    }
+//    useLibrary 'org.apache.http.legacy'
+    dataBinding {
+        enabled true
+    }
+    repositories {
+        flatDir {
+            dirs 'libs', "src/main/libs"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+    lintOptions {
+        abortOnError false
+    }
+//    testOptions {
+//        unitTests.returnDefaultValues = true
+//    }
+    sourceSets {
+        main {
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+            java.srcDirs = ['src/main/java']
+            resources.srcDirs = ['src/main/java']
+            aidl.srcDirs = ['src/main/aidl']
+            renderscript.srcDirs = ['src/main/java']
+            res.srcDirs = ['src/main/res']
+            assets.srcDirs = ['src/main/assets']
+            jniLibs.srcDirs = ['src/main/libs']
+
+        }
+
+        // Move the tests to tests/java, tests/res, etc...
+        instrumentTest.setRoot('tests')
+
+        // Move the build types to build-types/<type>
+        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
+        // This moves them out of them default location under src/<type>/... which would
+        // conflict with src/ being used by the main source set.
+        // Adding new build types or product flavors should be accompanied
+        // by a similar customization.
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    configurations {
+//        all*.exclude group: 'com.android.support'
+        provided.exclude group: 'com.android.support', module: 'support-v4:21.0.3'
+//        all*.exclude group: "com.android.support:support-v4:21.0.3"
+//        force "com.android.support:support-v4:21.0.3"
+//    resolutionStrategy.force "com.android.support:support-annotations:21.0.3"
+
+//        //编译期排除commons模块
+//        compile.exclude module: 'commons'
+//        //在整个构建过程中排除pkaq.tiger：share
+//        all*.exclude group: 'pkaq.tiger', module: 'share'
+
+//        resolutionStrategy {
+//            force 'com.android.support:support-v4:25.3.1'
+//        }
+    }
+    dexOptions {
+        maxProcessCount 4
+        dexInProcess true
+        preDexLibraries true
+        javaMaxHeapSize "2g"//越大越好
+//        incremental true
+    }
+    kapt {
+        generateStubs = true
+    }
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'src/main/libs')
+    compile 'com.android.support:recyclerview-v7:27.0.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:appcompat-v7:27.0.1'
+    compile 'com.android.support:palette-v7:27.0.1'
+    //    provided(name: 'bugly_crashreport_upgrade-1.3.1', ext: 'aar')
+    compile(name: 'twinklingRefreshLaoutlibrary-release', ext: 'aar')
+    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
+    compile('com.facebook.fresco:fresco:1.3.0') {
+        exclude group: 'com.squareup.okhttp3'
+    }
+    compile 'com.facebook.fresco:animated-webp:1.3.0'
+    compile('com.facebook.fresco:webpsupport:1.3.0') {
+        exclude group: 'com.squareup.okhttp3'
+    }
+    // 在 API < 14 上的机器支持 WebP 时，需要添加
+    //    compile 'com.facebook.fresco:animated-base-support:1.3.0'
+    compile('com.facebook.fresco:imagepipeline-okhttp3:1.3.0') {
+        exclude group: 'com.squareup.okhttp3'
+    }
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    kapt "com.android.databinding:compiler:$project.databindingcompiler"
+    compile "com.alibaba:arouter-api:$project.arouterapi"
+}
+repositories {
+    mavenCentral()
+}

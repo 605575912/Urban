@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Base.V7.Theme.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
+
+    <!--<style name="Theme.Translucent" parent="android:style/Theme.Translucent">-->
+    <!--<item name="android:windowNoTitle">false</item>-->
+    <!--<item name="android:windowContentOverlay">@null</item>-->
+    <!--&lt;!&ndash; <item name="android:windowIsTranslucent">false</item> &ndash;&gt;-->
+    <!--&lt;!&ndash;<item name="android:scrollbarThumbVertical">@drawable/scroll_thumb</item>&ndash;&gt;-->
+    <!--&lt;!&ndash; <item name="android:alertDialogStyle">@style/MMAlertDialog</item> &ndash;&gt;-->
+    <!--<item name="android:windowBackground">@android:color/white</item>-->
+    <!--&lt;!&ndash;-->
+    <!--<item name="android:colorForeground">@color/background_transparent</item>-->
+    <!--&ndash;&gt;-->
+    <!--</style>-->
+
+    <declare-styleable name="CustomImageView">
+        <attr name="min_scale_factor" format="float" />
+        <attr name="max_scale_factor" format="float" />
+        <attr name="can_back_translate" format="boolean" />
+        <attr name="can_back_rotate" format="boolean" />
+        <attr name="can_back_scale" format="boolean" />
+        <attr name="animator_time" format="integer" />
+    </declare-styleable>
+</resources>
