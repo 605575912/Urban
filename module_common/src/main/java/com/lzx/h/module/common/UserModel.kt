@@ -18,4 +18,5 @@ class UserModel {
     var age: Int = 0
     var singin: String? = null
     var token: String? = null
+    var psw: String? = null
 }

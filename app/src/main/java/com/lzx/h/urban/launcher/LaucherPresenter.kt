@@ -32,7 +32,7 @@ open class LaucherPresenter {
                         //                        if (denied_permissions == null || camera == null) {
                         //                        }
                         if (islogin()) {
-                            ARouter.getInstance().build("/main/main").navigation()
+//                            ARouter.getInstance().build("/main/main").navigation()
                             MainActivity.StartActivity(activity)
                         } else {
                             ARouter.getInstance().build("/login/list").navigation()

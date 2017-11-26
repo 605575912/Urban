@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.facebook.binaryresource.BinaryResource;
@@ -52,9 +53,10 @@ public class ImageUtils implements IProguard.ProtectClassAndMembers {
         if (imageView == null) {
             return;
         }
-        if (url == null) {
+        if (TextUtils.isEmpty(url)) {
             DraweeController controller = Fresco.newDraweeControllerBuilder()
                     .setAutoPlayAnimations(true)
+
                     .build();
             GenericDraweeHierarchy hierarchy = imageView.getHierarchy();
             if (hierarchy != null)
@@ -78,12 +80,30 @@ public class ImageUtils implements IProguard.ProtectClassAndMembers {
         }
         if (url.startsWith("file://")) {
             Uri uri = Uri.parse(url);
-            imageView.setImageURI(uri);
+            DraweeController controller = Fresco.newDraweeControllerBuilder()
+                    .setAutoPlayAnimations(true)
+                    .setUri(uri)
+                    .setOldController(imageView.getController())
+                    .build();
+            GenericDraweeHierarchy hierarchy = imageView.getHierarchy();
+            if (hierarchy != null)
+                if (drawable != null) {
+                    hierarchy.setPlaceholderImage(drawable);
+                } else if (defaultResId != 0) {
+                    try {
+                        drawable = BaseApplication.getApplication().getResources().getDrawable(defaultResId);
+                        hierarchy.setPlaceholderImage(drawable);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            imageView.setController(controller);
             return;
         } else if (url.startsWith("http:")) {
             {
                 DraweeController controller = Fresco.newDraweeControllerBuilder()
                         .setUri(url)
+                        .setOldController(imageView.getController())
                         .setAutoPlayAnimations(true)
                         .build();
                 GenericDraweeHierarchy hierarchy = imageView.getHierarchy();

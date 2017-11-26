@@ -19,9 +19,9 @@ open class DataBindBaseViewItem : BaseViewItem {
     override val viewType: Int
         get() = javaClass.hashCode()
 
-    override fun createView(parent: ViewGroup): View {
-        return View(parent.context)
-    }
+//    override fun createView(parent: ViewGroup): View {
+//        return View(parent.context)
+//    }
 
     open fun createViewID(parent: ViewGroup): Int {
         return 0
@@ -42,7 +42,7 @@ open class DataBindBaseViewItem : BaseViewItem {
 
         }
         if (view == null) {
-            view = createView(parent)
+            view = View(parent.context)
         }
         val viewDataBinding = DataBindingUtil.bind<ViewDataBinding>(view)
         return ViewHolder(viewDataBinding)

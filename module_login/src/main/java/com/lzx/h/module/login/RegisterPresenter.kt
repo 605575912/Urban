@@ -60,6 +60,7 @@ class RegisterPresenter constructor(activity: Activity) {
                 var user = model as UserModel
                 AppLibUtils.setToken(user.token)
                 var userper = UserPreferences()
+                user.psw = "123"
                 userper.setUserModel(user)
                 ToastUtils.showToast("欢迎你！注册成功")
                 handler.postDelayed(

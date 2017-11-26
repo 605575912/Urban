@@ -11,11 +11,11 @@ class UserPreferences() {
     var shared: SharedPreferences = CryptSharedPreferences.getDefaultSharedPreferences(BaseApplication.getApplication())
 
     fun getusername(): String {
-        return ""
+        return shared.getString("name", "")
     }
 
     fun getuserpsd(): String {
-        return ""
+        return shared.getString("psw", "")
     }
 
     fun setUserModel(userModel: UserModel) {
@@ -23,6 +23,13 @@ class UserPreferences() {
         edit.putString("name", userModel.name)
         edit.putInt("age", userModel.age)
         edit.putInt("sex", userModel.sex)
+        edit.putString("psw", userModel.psw)
+        edit.apply()
+    }
+
+    fun setImage(image: String) {
+        var edit = shared.edit()
+        edit.putString("image", image)
         edit.apply()
     }
     fun islogin(): Boolean {

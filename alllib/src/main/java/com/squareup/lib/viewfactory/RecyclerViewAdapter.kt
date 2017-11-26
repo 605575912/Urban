@@ -30,11 +30,11 @@ class RecyclerViewAdapter
             if (viewItem.viewType == viewType) {
                 viewHolder = viewItem.createViewHolder(parent)
                 if (viewHolder == null) {
-                    val contentview = viewItem.createView(parent)
-                    if (contentview != null) {
-                        viewHolder = RecyclerViewHolder(contentview)
-                        break
-                    }
+//                    val contentview = viewItem.createView(parent)
+//                    if (contentview != null) {
+//                        viewHolder = RecyclerViewHolder(contentview)
+//                        break
+//                    }
                 } else {
                     break
                 }

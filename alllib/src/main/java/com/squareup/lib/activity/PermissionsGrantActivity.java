@@ -61,7 +61,7 @@ public class PermissionsGrantActivity extends Activity {
         }
         String[] denied_permissions = getGrantPermissions(context, permissions, PackageManager.PERMISSION_DENIED);
         if (denied_permissions == null || permissions == null || permissions.length == 0) { // 全部被授权，直接回调handler
-            handler.onPermissionsResult(permissions, new String[]{});
+            handler.onPermissionsResult(permissions, null);
             return;
         }
         permissions = denied_permissions;

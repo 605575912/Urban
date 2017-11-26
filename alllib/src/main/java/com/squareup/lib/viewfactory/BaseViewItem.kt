@@ -1,9 +1,7 @@
 package com.squareup.lib.viewfactory
 
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import android.view.ViewGroup
-
 import com.squareup.lib.annotation.KeepNotProguard
 
 /**
@@ -14,7 +12,6 @@ import com.squareup.lib.annotation.KeepNotProguard
 interface BaseViewItem {
     val viewType: Int
 
-    fun createView(parent: ViewGroup): View
 
     fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int)
 

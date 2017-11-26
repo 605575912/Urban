@@ -3,5 +3,6 @@
 
     <application>
         <activity android:name="com.lzx.h.module.image.ImageActivity" />
+        <activity android:name=".ChooseActivity" />
     </application>
 </manifest>

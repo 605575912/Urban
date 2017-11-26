@@ -64,9 +64,9 @@ public class BaseApplication extends Application implements Application.Activity
         final MemoryCacheParams bitmapCacheParams = new MemoryCacheParams(
                 cacheSize, // Max total size of elements in the cache
                 200,                     // Max entries in the cache
-                10 * 1024 * 1024, // Max total size of elements in eviction queue
+                50 * 1024 * 1024, // Max total size of elements in eviction queue
                 50,                     // Max length of eviction queue
-                maxMemory / 8);
+                10 * 1024 * 1024);
         configBuilder.setBitmapMemoryCacheParamsSupplier(
                 new Supplier<MemoryCacheParams>() {
                     public MemoryCacheParams get() {
