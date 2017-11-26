@@ -14,6 +14,8 @@ class BindingAdapter {
         fun background(view: View?, color: String?) {
             view?.setBackgroundColor(Color.parseColor(color))
         }
+
+
     }
 
 }

@@ -63,19 +63,26 @@ public class BaseActivity extends FragmentActivity implements LayoutInterFace {
         if (frameLayout.getChildCount() > 0) {
             View view = frameLayout.findViewById(R.id.topView);
             if (view == null) {
-                frameLayout.getChildAt(0).setPadding(0, h, 0, getVirtualBarHeigh());
+                frameLayout.getChildAt(0).setPadding(0, h, 0, getBottom());
             } else {
                 view.setPadding(0, h, 0, 0);
+                frameLayout.getChildAt(0).setPadding(0, h, 0, getBottom());
             }
         } else {
-            frameLayout.setPadding(0, h, 0, 0);
+            frameLayout.setPadding(0, h, 0, getBottom());
         }
     }
 
+    int getBottom() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return getVirtualBarHeigh();
+        }
+        return 0;
+    }
     /**
      * 获取虚拟功能键高度
      */
-    public int getVirtualBarHeigh() {
+    private int getVirtualBarHeigh() {
         int vh = 0;
         WindowManager windowManager = (WindowManager) BaseApplication.getApplication().getSystemService(Context.WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
@@ -137,7 +144,7 @@ public class BaseActivity extends FragmentActivity implements LayoutInterFace {
         return true;
     }
 
-    //是否透明状态栏
+    //是否底部嵌入透明状态栏
     protected boolean isAllTranslucentStatus() {
         return false;
     }

@@ -1,6 +1,5 @@
 package com.lzx.h.module.main;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.graphics.Color;
@@ -56,7 +55,7 @@ public class TabFragment extends ListFrament {
     }
 
     protected void onRefresh() {
-//        HttpUtils.INSTANCE.getAsynMainHttp(tabsBean.getJumpcontent(), DataUnit.class);//返回根据JSON解析的对象
+        HttpUtils.INSTANCE.getAsynMainHttp(tabsBean.getJumpcontent(), DataUnit.class);//返回根据JSON解析的对象
     }
 
     @Override
@@ -80,16 +79,16 @@ public class TabFragment extends ListFrament {
                     if (layoutManager instanceof LinearLayoutManager) {
                         LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
                         int firstItemPosition = linearManager.findFirstVisibleItemPosition();
-//                        if (list.get(firstItemPosition) instanceof BannerView) {
-//                            View view = recyclerView.getChildAt(0);
-//                            float maxh = view.getHeight() - titleview.getHeight();
-//                            float alpha = Math.abs(view.getY() / maxh);
-//                            if (alpha > 1) {
-//                                titleview.setBackgroundColor(Color.argb(255, 51, 249, 222));
-//                            } else {
-//                                titleview.setBackgroundColor(Color.argb((int) (alpha * 255), 51, 249, 222));
-//                            }
-//                        }
+                        if (list.get(firstItemPosition) instanceof BannerView) {
+                            View view = recyclerView.getChildAt(0);
+                            float maxh = view.getHeight() - titleview.getHeight();
+                            float alpha = Math.abs(view.getY() / maxh);
+                            if (alpha > 1) {
+                                titleview.setBackgroundColor(Color.argb(255, 51, 249, 222));
+                            } else {
+                                titleview.setBackgroundColor(Color.argb((int) (alpha * 255), 51, 249, 222));
+                            }
+                        }
                     }
                 }
             }
@@ -98,16 +97,16 @@ public class TabFragment extends ListFrament {
     }
 
 
-//    private void addTitleView(int titletype) {
-//        if (titletype == 1) {
-//            titleview = LayoutInflater.from(getActivity()).inflate(R.layout.home_title_layout, frameLayout, false);
-//            titleview.setPadding(0, AppLibUtils.getStatusBarHeight(), 0, 0);
-//            ViewDataBinding viewDataBinding = DataBindingUtil.bind(titleview);
-//            viewDataBinding.setVariable(BR.onclick, this);
-//            viewDataBinding.setVariable(BR.title, "稻香");
-//            frameLayout.addView(titleview);
-//        }
-//    }
+    private void addTitleView(int titletype) {
+        if (titletype == 1) {
+            titleview = LayoutInflater.from(getActivity()).inflate(R.layout.home_title_layout, frameLayout, false);
+            titleview.setPadding(0, AppLibUtils.getStatusBarHeight(), 0, 0);
+            ViewDataBinding viewDataBinding = DataBindingUtil.bind(titleview);
+            viewDataBinding.setVariable(BR.onclick, this);
+            viewDataBinding.setVariable(BR.title, "稻香");
+            frameLayout.addView(titleview);
+        }
+    }
 
     public void onEventMain(EventMainObject event) {
         if (tabsBean == null) {
@@ -115,21 +114,26 @@ public class TabFragment extends ListFrament {
         }
 
         if (event.getCommand().equals(tabsBean.getJumpcontent())) {
-//            if (event.getData() instanceof DataUnit) {
-//                finishRefreshing();
-//                loadEmptyViewControl.loadcomplete();
-//                list.clear();
-////                addData((DataUnit) event.getData());
-//            } else {
-//                loadEmptyViewControl.loadError(event.getData().toString());
-//            }
+            if (event.isSuccess()) {
+                if (event.getData() instanceof DataUnit) {
+                    finishRefreshing();
+                    loadEmptyViewControl.loadcomplete();
+                    list.clear();
+                    addData((DataUnit) event.getData());
+                } else {
+                    loadEmptyViewControl.loadError(event.getData().toString());
+                }
+            } else {
+                loadEmptyViewControl.loadError(event.getData().toString());
+            }
+
         }
     }
 
-//    private void addData(DataUnit dataUnit) {
-//        if (dataUnit.getTitletype() > 0) {
-//            addTitleView(dataUnit.getTitletype());
-//        }
+    private void addData(DataUnit dataUnit) {
+        if (dataUnit.getTitletype() > 0) {
+            addTitleView(dataUnit.getTitletype());
+        }
 //        if (dataUnit.getMinecards() != null) {
 //            for (MineCard mineCard : dataUnit.getMinecards()) {
 //                if (mineCard.getLogincard() != null) {
@@ -163,29 +167,29 @@ public class TabFragment extends ListFrament {
 //
 //            }
 //        }
-//        if (dataUnit.getCards() != null) {
-//            for (Card card : dataUnit.getCards()) {
-//                List<BannerModel> banners = card.getBanners();
-//                if (banners != null && banners.size() > 0) {
-//                    BannerView bannerView = new BannerView(banners);
-//                    list.add(bannerView);
-//                }
-//                List<ColumnData> columnitems = card.getColumnitems();
-//                if (columnitems != null && columnitems.size() > 0) {
+        if (dataUnit.getCards() != null) {
+            for (Card card : dataUnit.getCards()) {
+                List<BannerModel> banners = card.getBanners();
+                if (banners != null && banners.size() > 0) {
+                    BannerView bannerView = new BannerView(banners);
+                    list.add(bannerView);
+                }
+                List<ColumnData> columnitems = card.getColumnitems();
+                if (columnitems != null && columnitems.size() > 0) {
 //                    ColumnView columnView = new ColumnView(columnitems);
 //                    list.add(columnView);
 //                    MineSpaceView mineSpaceView = new MineSpaceView();
 //                    list.add(mineSpaceView);
-//                }
-//                List<DiscountData> discountdatas = card.getDiscountdatas();
-//                if (discountdatas != null && discountdatas.size() > 0) {
+                }
+                List<DiscountData> discountdatas = card.getDiscountdatas();
+                if (discountdatas != null && discountdatas.size() > 0) {
 //                    DiscountView discountView = new DiscountView(discountdatas);
 //                    list.add(discountView);
 //                    MineSpaceView mineSpaceView = new MineSpaceView();
 //                    list.add(mineSpaceView);
-//                }
-//                List<CardUnit> cardUnits = card.getCardUnits();
-//                if (cardUnits != null) {
+                }
+                List<CardUnit> cardUnits = card.getCardUnits();
+                if (cardUnits != null) {
 //                    for (CardUnit cardUnit : cardUnits) {
 //                        List<ItemData> itemDatas = cardUnit.getItems();
 //                        if (itemDatas == null || itemDatas.size() == 0) {
@@ -202,8 +206,8 @@ public class TabFragment extends ListFrament {
 //                    }
 //                    MineSpaceView mineSpaceView = new MineSpaceView();
 //                    list.add(mineSpaceView);
-//                }
-//                List<ItemData> itemDatas = card.getItems();
+                }
+                List<ItemData> itemDatas = card.getItems();
 //                if (itemDatas != null) {
 //                    for (ItemData itemData : itemDatas) {
 //                        DoubleItemView mainItemView = new DoubleItemView(getActivity());
@@ -213,12 +217,12 @@ public class TabFragment extends ListFrament {
 //                    MineSpaceView mineSpaceView = new MineSpaceView();
 //                    list.add(mineSpaceView);
 //                }
-//
-//            }
-//        }
-//        List<ItemData> itemDatas = dataUnit.getItems();
-//        if (itemDatas != null) {
-//            for (ItemData itemData : dataUnit.getItems()) {
+
+            }
+        }
+        List<ItemData> itemDatas = dataUnit.getItems();
+        if (itemDatas != null) {
+            for (ItemData itemData : dataUnit.getItems()) {
 //                if (itemData.getType() == 1) {//推荐
 //                    PushItemView mainItemView = new PushItemView(getActivity(), itemData);
 //                    list.add(mainItemView);
@@ -227,11 +231,11 @@ public class TabFragment extends ListFrament {
 //                } else {
 //
 //                }
-//
-//            }
-//        }
-//        notifyDataSetChanged();
-//    }
+
+            }
+        }
+        notifyDataSetChanged();
+    }
 
     public void onClick(View view) {
 //        Intent intent = new Intent();

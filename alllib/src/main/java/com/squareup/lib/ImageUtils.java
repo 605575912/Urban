@@ -15,6 +15,7 @@ import com.facebook.common.executors.CallerThreadExecutor;
 import com.facebook.common.references.CloseableReference;
 import com.facebook.datasource.DataSource;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.drawable.ScalingUtils;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -75,7 +76,16 @@ public class ImageUtils implements IProguard.ProtectClassAndMembers {
         }
         if (url.startsWith("asset://")) {
             Uri uri = Uri.parse(url);
-            imageView.setImageURI(uri);
+            DraweeController controller = Fresco.newDraweeControllerBuilder()
+                    .setAutoPlayAnimations(true)
+                    .setUri(uri)
+                    .setOldController(imageView.getController())
+                    .build();
+            GenericDraweeHierarchy hierarchy = imageView.getHierarchy();
+            if (hierarchy != null) {
+                hierarchy.setActualImageScaleType(ScalingUtils.ScaleType.FIT_CENTER);
+            }
+            imageView.setController(controller);
             return;
         }
         if (url.startsWith("file://")) {
