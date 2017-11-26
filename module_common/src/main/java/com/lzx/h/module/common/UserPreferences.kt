@@ -14,16 +14,23 @@ class UserPreferences() {
         return ""
     }
 
-    fun getuserpse(): String {
+    fun getuserpsd(): String {
         return ""
     }
 
+    fun setUserModel(userModel: UserModel) {
+        var edit = shared.edit()
+        edit.putString("name", userModel.name)
+        edit.putInt("age", userModel.age)
+        edit.putInt("sex", userModel.sex)
+        edit.apply()
+    }
     fun islogin(): Boolean {
 
         if (getusername().isNullOrEmpty()) {
             return false
         }
-        if (getuserpse().isNullOrEmpty()) {
+        if (getuserpsd().isNullOrEmpty()) {
             return false
         }
         return true

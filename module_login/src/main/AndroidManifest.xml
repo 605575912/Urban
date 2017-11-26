@@ -2,7 +2,6 @@
     package="com.lzx.h.module.login">
 
     <application>
-        <activity android:name=".LoginActivity" />
         <activity
             android:name=".LoginShowActivity"
             android:theme="@style/ShowActivityTheme"></activity>

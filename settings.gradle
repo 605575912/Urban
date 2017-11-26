@@ -1,1 +1,1 @@
-include ':app', ':alllib', ':module_login', ':module_common'
+include ':app', ':alllib', ':module_login', ':module_common', ':module_image'

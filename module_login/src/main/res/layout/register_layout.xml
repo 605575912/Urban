@@ -90,6 +90,7 @@
 
 
                     <RadioButton
+                        android:id="@+id/radio0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -99,14 +100,15 @@
                         android:onClick="@{presenter::manonclick}" />
 
                     <RadioButton
+                        android:id="@+id/radio1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="15dp"
                         android:button="@null"
-                        android:checked="true"
                         android:background="@drawable/login_x_women"
-                        android:onClick="@{presenter::womenonclick}" />
+                        android:onClick="@{presenter::womenonclick}"
+                         />
 
 
                 </RadioGroup>

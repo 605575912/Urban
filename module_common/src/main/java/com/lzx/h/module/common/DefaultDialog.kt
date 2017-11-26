@@ -16,17 +16,17 @@ class DefaultDialog {
     internal var dialog: Dialog? = null
 
     fun showLoading(activity: Activity, defaultLinstener: DefaultLinstener) {
-        val dialog = Dialog(activity, R.style.DialogStyle)
-        dialog.setContentView(R.layout.loading_layout)
-        val imageview = dialog.findViewById<View>(R.id.imageview) as ImageView
-        val tv_confirm = dialog.findViewById<View>(R.id.tv_confirm) as TextView
+        dialog = Dialog(activity, R.style.DialogStyle)
+        dialog!!.setContentView(R.layout.loading_layout)
+        val imageview = dialog!!.findViewById<View>(R.id.imageview) as ImageView
+        val tv_confirm = dialog!!.findViewById<View>(R.id.tv_confirm) as TextView
         tv_confirm.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
-                dialog.cancel()
+                dialog!!.cancel()
             }
         })
 
-        dialog.setOnCancelListener(object : DialogInterface.OnCancelListener {
+        dialog!!.setOnCancelListener(object : DialogInterface.OnCancelListener {
             override fun onCancel(p0: DialogInterface?) {
                 (imageview.drawable as AnimationDrawable).stop()
                 if (defaultLinstener != null) {
@@ -41,9 +41,9 @@ class DefaultDialog {
         //        animation.setInterpolator(new LinearInterpolator());
         //        imageview.setAnimation(animation);
         //        animation.start();
-        dialog.setCancelable(false)
+        dialog!!.setCancelable(false)
         try {
-            dialog.show()
+            dialog!!.show()
         } catch (e: Exception) {
             e.printStackTrace()
         }
