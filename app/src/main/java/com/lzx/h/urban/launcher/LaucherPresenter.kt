@@ -4,7 +4,6 @@ import android.Manifest
 import android.os.Handler
 import com.alibaba.android.arouter.launcher.ARouter
 import com.lzx.h.module.common.UserPreferences
-import com.lzx.h.urban.MainActivity
 import com.squareup.lib.ThreadManager
 import com.squareup.lib.activity.PermissionHandler
 import com.squareup.lib.activity.PermissionsGrantActivity
@@ -32,8 +31,7 @@ open class LaucherPresenter {
                         //                        if (denied_permissions == null || camera == null) {
                         //                        }
                         if (islogin()) {
-//                            ARouter.getInstance().build("/main/main").navigation()
-                            MainActivity.StartActivity(activity)
+                            ARouter.getInstance().build("/main/mainactivity").navigation()
                         } else {
                             ARouter.getInstance().build("/login/list").navigation()
                         }

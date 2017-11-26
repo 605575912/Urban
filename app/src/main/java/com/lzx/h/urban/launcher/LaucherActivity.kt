@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import com.lzx.h.urban.R
-import com.squareup.lib.ImageUtils
 import com.squareup.lib.activity.BaseActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 class LaucherActivity : BaseActivity() {
     var laucher: LaucherPresenter? = null
@@ -32,7 +30,6 @@ class LaucherActivity : BaseActivity() {
             }
         }
         handler.postDelayed({
-//            ImageUtils.loadWebpImage("asset:///50.webp", image)
             laucher?.start(this, handler)
         }, 2000)
 
@@ -44,7 +41,6 @@ class LaucherActivity : BaseActivity() {
     }
 
     override fun onPause() {
-//        activitybind!!.image.visibility = View.GONE
         super.onPause()
     }
 

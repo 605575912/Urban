@@ -1,0 +1,36 @@
+{
+    "color": "#eeeeee",
+    "tabs": [
+        {
+            "id": 1,
+             "index":1,
+             "transtatus":true,
+            "normalimgurl": "asset:///tabimg/ic_vector_home_normal.png",
+            "pressedimgurl": "asset:///tabimg/ic_vector_home_pressed.png",
+            "jumpcontent": "http://192.168.30.13:8080/server/",
+            "title": "首页"
+        },
+        {
+            "id": 2,
+            "normalimgurl": "asset:///tabimg/ic_vector_nearby_normal.png",
+            "pressedimgurl": "asset:///tabimg/ic_vector_nearby_pressed.png",
+            "jumpcontent": "",
+            "title": "附近"
+        },
+        {
+            "id": 3,
+            "normalimgurl": "asset:///tabimg/ic_vector_order_normal.png",
+            "pressedimgurl": "asset:///tabimg/ic_vector_order_pressed.png",
+            "jumpcontent": "",
+            "title": "订单"
+        },
+        {
+            "id": 4,
+            "transtatus":true,
+            "normalimgurl": "asset:///tabimg/ic_vector_mine_normal.png",
+            "pressedimgurl": "asset:///tabimg/ic_vector_mine_pressed.png",
+            "jumpcontent": "http://192.168.30.13:8080/mine/",
+            "title": "我的"
+        }
+    ]
+}

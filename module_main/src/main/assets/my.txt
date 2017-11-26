@@ -1,0 +1,26 @@
+{
+    "detailcards": [
+        {
+            "imagedata": {
+                "img": "http://www.szeat.net/trade/UserDocument/8jnet_user/5318/20090501/200951059578893futafipiqak.jpg",
+                "imgtitle": "稻香酒家",
+                "imgdes": "稻香冬瓜盅火锅餐，建议2人使用，免预约",
+                "orgprice": 10,
+                "price": 2,
+                "timeprice": 0,
+                "eventdes": "",
+                "sellcount": 11,
+                "limts": [
+                    "随时退",
+                    "过去自动退"
+                ]
+            },
+            "commentdata": {
+                "score": 4,
+                "count": 13,
+                "coments":["1","2"
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">module_main</string>
+    <string name="str_loading">加载中...</string>
+    <string name="str_uploading">上传中...</string>
+    <string name="str_loaderror">没有相关数据</string>
+    <string name="str_nodata">没有相关数据</string>
+    <string name="str_neterror">无网络可用</string>
+    <string name="str_check_net">检查网络访问权限及链接状态</string>
+</resources>
