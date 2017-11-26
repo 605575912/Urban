@@ -1,6 +1,7 @@
 package com.squareup.lib.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.graphics.Color;
@@ -8,11 +9,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v4.app.FragmentActivity;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
+import com.squareup.lib.BaseApplication;
 import com.squareup.lib.BuildConfig;
 import com.squareup.lib.EventMainObject;
 import com.squareup.lib.EventThreadObject;
@@ -25,6 +29,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -58,7 +63,7 @@ public class BaseActivity extends FragmentActivity implements LayoutInterFace {
         if (frameLayout.getChildCount() > 0) {
             View view = frameLayout.findViewById(R.id.topView);
             if (view == null) {
-                frameLayout.getChildAt(0).setPadding(0, h, 0, 0);
+                frameLayout.getChildAt(0).setPadding(0, h, 0, getVirtualBarHeigh());
             } else {
                 view.setPadding(0, h, 0, 0);
             }
@@ -67,7 +72,26 @@ public class BaseActivity extends FragmentActivity implements LayoutInterFace {
         }
     }
 
-
+    /**
+     * 获取虚拟功能键高度
+     */
+    public int getVirtualBarHeigh() {
+        int vh = 0;
+        WindowManager windowManager = (WindowManager) BaseApplication.getApplication().getSystemService(Context.WINDOW_SERVICE);
+        Display display = windowManager.getDefaultDisplay();
+        DisplayMetrics dm = new DisplayMetrics();
+        try {
+            @SuppressWarnings("rawtypes")
+            Class c = Class.forName("android.view.Display");
+            @SuppressWarnings("unchecked")
+            Method method = c.getMethod("getRealMetrics", DisplayMetrics.class);
+            method.invoke(display, dm);
+            vh = dm.heightPixels - windowManager.getDefaultDisplay().getHeight();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return vh;
+    }
     public boolean NeedEventBus() {
         return true;
     }
@@ -89,8 +113,9 @@ public class BaseActivity extends FragmentActivity implements LayoutInterFace {
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//                window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
                 window.setStatusBarColor(Color.TRANSPARENT);
-                window.setNavigationBarColor(Color.TRANSPARENT);
+                window.setNavigationBarColor(Color.BLACK);
             } else {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                     WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
@@ -99,7 +124,9 @@ public class BaseActivity extends FragmentActivity implements LayoutInterFace {
             }
 
         }
-        setStatus(isAllTranslucentStatus());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            setStatus(isAllTranslucentStatus());
+        }
         if (NeedEventBus()) {
             EventBus.getDefault().register(this);
         }
