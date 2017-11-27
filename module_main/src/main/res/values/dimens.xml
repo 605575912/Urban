@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="hpv6_appicon">64dp</dimen>
+    <dimen name="detailimage">15dp</dimen>
+    <dimen name="detailimageleft">5dp</dimen>
+
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+    <dimen name="standard_padding">8dip</dimen>
+    <dimen name="half_padding">4dip</dimen>
+
+
+    <dimen name="share_notiecH">122dip</dimen>
+    <dimen name="title_height">130dp</dimen>
+    <dimen name="title_image">14dp</dimen>
+    <dimen name="title_image_left">20dp</dimen>
+    <dimen name="meilititle_bottom">20dp</dimen>
+    <dimen name="title_top">20dp</dimen>
+    <dimen name="imayhot_padding">3dp</dimen>
+</resources>

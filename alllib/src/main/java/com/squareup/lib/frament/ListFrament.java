@@ -73,7 +73,12 @@ public class ListFrament extends BaseFrament {
     @KeepNotProguard
     protected final void notifyDataSetChanged() {
         if (adapter != null) {
-            adapter.notifyDataSetChanged();
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    adapter.notifyDataSetChanged();
+                }
+            });
         }
 
     }

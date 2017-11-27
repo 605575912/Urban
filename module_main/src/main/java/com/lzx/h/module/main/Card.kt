@@ -8,6 +8,7 @@ package com.lzx.h.module.main
 class Card {
     var cardUnits: List<CardUnit>? = null
     val items: List<ItemData>? = null
+    val users: List<UserData>? = null
     val banners: List<BannerModel>? = null
     val columnitems: List<ColumnData>? = null
     val discountdatas: List<DiscountData>? = null

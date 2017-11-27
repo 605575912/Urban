@@ -7,7 +7,7 @@
              "transtatus":true,
             "normalimgurl": "asset:///tabimg/ic_vector_home_normal.png",
             "pressedimgurl": "asset:///tabimg/ic_vector_home_pressed.png",
-            "jumpcontent": "http://192.168.30.13:8080/server/",
+            "jumpcontent": "file:///android_asset/tab0.txt",
             "title": "首页"
         },
         {

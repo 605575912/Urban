@@ -8,6 +8,8 @@
     <item name="searchfeed_id" type="id" />
     <item name="maintabs_id" type="id" />
 
+    <item name="gaussgroud_id" type="id" />
+
     <item name="iv_dynimg0_id" type="id"></item>
     <item name="iv_dynimg1_id" type="id"></item>
     <item name="iv_dynimg2_id" type="id"></item>

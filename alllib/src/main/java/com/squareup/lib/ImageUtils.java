@@ -43,14 +43,22 @@ public class ImageUtils implements IProguard.ProtectClassAndMembers {
      * @param imageView
      */
     public static void loadImage(String url, SimpleDraweeView imageView) {
-        loadImage(url, imageView, 0, null);
+        loadImage(url, imageView, 0, null, ScalingUtils.ScaleType.FIT_CENTER);
+    }
+
+    public static void loadImage(String url, SimpleDraweeView imageView, ScalingUtils.ScaleType scaleType) {
+        loadImage(url, imageView, 0, null, scaleType);
     }
 
     public static void loadImage(String url, SimpleDraweeView imageView, Drawable drawable) {
-        loadImage(url, imageView, 0, drawable);
+        loadImage(url, imageView, 0, drawable, ScalingUtils.ScaleType.FIT_CENTER);
     }
 
-    private static void loadImage(String url, SimpleDraweeView imageView, int defaultResId, Drawable drawable) {
+    public static void loadImage(String url, SimpleDraweeView imageView, Drawable drawable, ScalingUtils.ScaleType scaleType) {
+        loadImage(url, imageView, 0, drawable, scaleType);
+    }
+
+    private static void loadImage(String url, SimpleDraweeView imageView, int defaultResId, Drawable drawable, ScalingUtils.ScaleType scaleType) {
         if (imageView == null) {
             return;
         }
@@ -83,7 +91,7 @@ public class ImageUtils implements IProguard.ProtectClassAndMembers {
                     .build();
             GenericDraweeHierarchy hierarchy = imageView.getHierarchy();
             if (hierarchy != null) {
-                hierarchy.setActualImageScaleType(ScalingUtils.ScaleType.FIT_CENTER);
+                hierarchy.setActualImageScaleType(scaleType);
             }
             imageView.setController(controller);
             return;
@@ -98,6 +106,7 @@ public class ImageUtils implements IProguard.ProtectClassAndMembers {
             GenericDraweeHierarchy hierarchy = imageView.getHierarchy();
             if (hierarchy != null)
                 if (drawable != null) {
+                    hierarchy.setActualImageScaleType(scaleType);
                     hierarchy.setPlaceholderImage(drawable);
                 } else if (defaultResId != 0) {
                     try {
@@ -109,7 +118,7 @@ public class ImageUtils implements IProguard.ProtectClassAndMembers {
                 }
             imageView.setController(controller);
             return;
-        } else if (url.startsWith("http:")) {
+        } else if (url.startsWith("http")) {
             {
                 DraweeController controller = Fresco.newDraweeControllerBuilder()
                         .setUri(url)
@@ -118,6 +127,7 @@ public class ImageUtils implements IProguard.ProtectClassAndMembers {
                         .build();
                 GenericDraweeHierarchy hierarchy = imageView.getHierarchy();
                 if (hierarchy != null && defaultResId != 0) {
+                    hierarchy.setActualImageScaleType(scaleType);
                     hierarchy.setPlaceholderImage(defaultResId);
 //            RoundingParams roundingParams = new RoundingParams();
 //            roundingParams.setCornersRadius(Resources.getSystem().getDisplayMetrics().density * radius);

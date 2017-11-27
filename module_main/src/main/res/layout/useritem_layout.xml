@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+        <variable
+            name="userdata"
+            type="com.lzx.h.module.main.UserData" />
+
+        <!--<variable-->
+        <!--name="onclick"-->
+        <!--type="ItemView" />-->
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/head"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            app:iconurl="@{userdata.imgurl}" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/head"
+            android:text="爱豆"
+            android:textColor="#05abd4"
+            android:textSize="19sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="和我聊天" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="和我聊天" />
+
+    </RelativeLayout>
+</layout>

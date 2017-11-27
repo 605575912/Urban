@@ -9,9 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,6 +20,7 @@ import com.squareup.lib.EventMainObject;
 import com.squareup.lib.EventThreadObject;
 import com.squareup.lib.ImageUtils;
 import com.squareup.lib.activity.TabBaseActivity;
+import com.squareup.lib.frament.BaseFrament;
 import com.squareup.lib.utils.AppLibUtils;
 import com.squareup.lib.utils.LogUtil;
 import com.squareup.lib.utils.ToastUtils;
@@ -110,6 +109,9 @@ public class MainActivity extends TabBaseActivity implements View.OnClickListene
 
     @Override
     public void onEventMain(EventMainObject event) {
+        for (BaseFrament tabFragment : fragments) {
+            tabFragment.onEventMain(event);
+        }
         if (tabsCache != null) {
             if (event.getCommand().equals(tabsCache.getCommand())) {
                 if (event.getData() instanceof TabModel) {

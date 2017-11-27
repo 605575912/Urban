@@ -173,7 +173,24 @@ public class TabFragment extends ListFrament {
                 if (banners != null && banners.size() > 0) {
                     BannerView bannerView = new BannerView(banners);
                     list.add(bannerView);
+                    MineSpaceView mineSpaceView = new MineSpaceView();
+                    list.add(mineSpaceView);
                 }
+                List<UserData> userDataList = card.getUsers();
+                if (userDataList != null) {
+                    if (userDataList.size() == 1) {
+                        UserItemView baseViewItem = new UserItemView(getActivity(), userDataList.get(0));
+                        list.add(baseViewItem);
+                        MineSpaceView mineSpaceView = new MineSpaceView();
+                        list.add(mineSpaceView);
+                        continue;
+                    }
+                    ChangedUserItemView baseViewItem = new ChangedUserItemView(getActivity(), userDataList);
+                    list.add(baseViewItem);
+                    MineSpaceView mineSpaceView = new MineSpaceView();
+                    list.add(mineSpaceView);
+                }
+
                 List<ColumnData> columnitems = card.getColumnitems();
                 if (columnitems != null && columnitems.size() > 0) {
 //                    ColumnView columnView = new ColumnView(columnitems);
@@ -190,25 +207,25 @@ public class TabFragment extends ListFrament {
                 }
                 List<CardUnit> cardUnits = card.getCardUnits();
                 if (cardUnits != null) {
-//                    for (CardUnit cardUnit : cardUnits) {
-//                        List<ItemData> itemDatas = cardUnit.getItems();
-//                        if (itemDatas == null || itemDatas.size() == 0) {
-//                            continue;
-//                        }
-//                        if (itemDatas.size() == 1) {
-//                            ItemView baseViewItem = new ItemView(getActivity(), itemDatas.get(0));
-//                            list.add(baseViewItem);
-//                            continue;
-//                        }
-//                        ChangedItemView baseViewItem = new ChangedItemView(getActivity(), itemDatas);
-//                        list.add(baseViewItem);
-//
-//                    }
+                    for (CardUnit cardUnit : cardUnits) {
+                        List<ItemData> itemDatas = cardUnit.getItems();
+                        if (itemDatas != null || itemDatas.size() > 0) {
+                            if (itemDatas.size() == 1) {
+                                ItemView baseViewItem = new ItemView(getActivity(), itemDatas.get(0));
+                                list.add(baseViewItem);
+                                continue;
+                            }
+                            ChangedItemView baseViewItem = new ChangedItemView(getActivity(), itemDatas);
+                            list.add(baseViewItem);
+                        }
+
+
+                    }
 //                    MineSpaceView mineSpaceView = new MineSpaceView();
 //                    list.add(mineSpaceView);
                 }
                 List<ItemData> itemDatas = card.getItems();
-//                if (itemDatas != null) {
+                if (itemDatas != null) {
 //                    for (ItemData itemData : itemDatas) {
 //                        DoubleItemView mainItemView = new DoubleItemView(getActivity());
 //                        mainItemView.setItemData(itemData);
@@ -216,7 +233,7 @@ public class TabFragment extends ListFrament {
 //                    }
 //                    MineSpaceView mineSpaceView = new MineSpaceView();
 //                    list.add(mineSpaceView);
-//                }
+                }
 
             }
         }
