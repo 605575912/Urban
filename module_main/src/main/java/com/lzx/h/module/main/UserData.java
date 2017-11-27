@@ -21,11 +21,10 @@ public class UserData {
 
     private String imgurl;
     private String content;
-    private String title;
+    private String name;
     private String location;
+    private String bgurl;
     private int dis;
-    private int price;
-    private int originaprice;
     private int sellcount;
     private String jumpcontent;
     private int type;
@@ -46,13 +45,6 @@ public class UserData {
         this.content = content;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getLocation() {
         return location;
@@ -70,21 +62,6 @@ public class UserData {
         this.dis = dis;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public int getOriginaprice() {
-        return originaprice;
-    }
-
-    public void setOriginaprice(int originaprice) {
-        this.originaprice = originaprice;
-    }
 
     public int getSellcount() {
         return sellcount;
@@ -110,4 +87,19 @@ public class UserData {
         this.type = type;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBgurl() {
+        return bgurl;
+    }
+
+    public void setBgurl(String bgurl) {
+        this.bgurl = bgurl;
+    }
 }

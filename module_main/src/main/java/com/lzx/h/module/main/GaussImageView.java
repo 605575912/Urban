@@ -2,6 +2,7 @@ package com.lzx.h.module.main;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
@@ -38,8 +39,13 @@ public class GaussImageView extends SimpleDraweeView {
 	}
     }
 
-    @Override
-    public void invalidate(Rect dirty) {
+	@Override
+	protected void onDraw(Canvas canvas) {
+		super.onDraw(canvas);
+	}
+
+	@Override
+	public void invalidate(Rect dirty) {
 	super.invalidate(dirty);
 	ViewParent parent = getParent();
 	if (parent != null && parent instanceof View){

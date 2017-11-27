@@ -1,6 +1,7 @@
 package com.squareup.lib;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -17,6 +18,7 @@ import com.facebook.datasource.DataSource;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.drawable.ScalingUtils;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
+import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imageformat.ImageFormat;
@@ -58,7 +60,7 @@ public class ImageUtils implements IProguard.ProtectClassAndMembers {
         loadImage(url, imageView, 0, drawable, scaleType);
     }
 
-    private static void loadImage(String url, SimpleDraweeView imageView, int defaultResId, Drawable drawable, ScalingUtils.ScaleType scaleType) {
+    public static void loadImage(String url, SimpleDraweeView imageView, int defaultResId, Drawable drawable, ScalingUtils.ScaleType scaleType) {
         if (imageView == null) {
             return;
         }
@@ -92,6 +94,9 @@ public class ImageUtils implements IProguard.ProtectClassAndMembers {
             GenericDraweeHierarchy hierarchy = imageView.getHierarchy();
             if (hierarchy != null) {
                 hierarchy.setActualImageScaleType(scaleType);
+                RoundingParams roundingParams = new RoundingParams();
+                roundingParams.setCornersRadius(Resources.getSystem().getDisplayMetrics().density * 10);
+                hierarchy.setRoundingParams(roundingParams);
             }
             imageView.setController(controller);
             return;
@@ -163,52 +168,7 @@ public class ImageUtils implements IProguard.ProtectClassAndMembers {
 //        }
     }
 
-    public static void loadRoundImage(Context context, String url, ImageView imageView, int defaultResId) {
-//        if (defaultResId == 0) {
-//            if (TextUtils.isEmpty(url)) {
-//                imageView.setImageResource(defaultResId);
-//                return;
-//            }
-//            Glide.with(context).load(url).into(imageView);
-//        } else {
-//            try {
-//                Drawable drawable = context.getResources().getDrawable(defaultResId);
-//                loadRoundImage(context, url, imageView, drawable);
-//            } catch (Exception e) {
-//                if (TextUtils.isEmpty(url)) {
-//                    return;
-//                }
-//                Glide.with(context).load(url).into(imageView);
-//            }
-//
-//        }
-    }
 
-    public static void loadRoundImage(Context context, String url, final ImageView imageView, Drawable drawable) {
-//        if (TextUtils.isEmpty(url)) {
-//            imageView.setImageDrawable(drawable);
-//            return;
-//        }
-//        RequestOptions options = new RequestOptions()
-//                .centerCrop()
-//                .placeholder(drawable)
-//                .error(drawable)
-//                .priority(Priority.HIGH).dontAnimate().transform(new RoundTransform(20, imageView));
-//        Glide.with(context).load(url).apply(options).into(imageView);
-    }
-
-    public static void loadCircleImage(Context context, String url, SimpleDraweeView imageView, Drawable drawable) {
-//        if (TextUtils.isEmpty(url)) {
-//            imageView.setImageDrawable(drawable);
-//            return;
-//        }
-//        RequestOptions options = new RequestOptions()
-//                .centerCrop()
-//                .placeholder(drawable)
-//                .error(drawable)
-//                .priority(Priority.HIGH).dontAnimate().transform(new GlideCircleTransform(context));
-//        Glide.with(context).load(url).apply(options).into(imageView);
-    }
 
     public static void loadWebpImage( String url, SimpleDraweeView imageView) {
 //        if (TextUtils.isEmpty(url)) {

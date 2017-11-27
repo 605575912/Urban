@@ -15,11 +15,16 @@
     </data>
 
     <RelativeLayout
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:iconbackground="@{userdata.bgurl}">
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/head"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentLeft="true"
@@ -32,19 +37,53 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/head"
-            android:text="爱豆"
-            android:textColor="#05abd4"
-            android:textSize="19sp" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:text="@{userdata.name}"
+            android:textColor="#24cdf7"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:layout_below="@+id/name"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/head"
+            android:text="20岁" />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_below="@+id/head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:text="@{userdata.content}" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="和我聊天" />
+            android:layout_below="@+id/content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="4dp"
+            android:text="@{userdata.location}"
+            android:textColor="#4e4e4e"
+            android:textSize="12sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="和我聊天" />
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/content"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="4dp"
+            android:text='@{"匹配度:"+String.valueOf(userdata.sellcount)}'
+            android:textColor="#f7ee9a"
+            android:textSize="13sp" />
 
     </RelativeLayout>
 </layout>

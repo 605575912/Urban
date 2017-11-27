@@ -24,23 +24,71 @@
     {
       "users": [
         {
-          "imgurl": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=133416024,2403659129&fm=26&gp=0.jpg",
-          "content": "00000004",
-          "count": 110
+          "imgurl": "asset:///images/1424618439564A8A910D_c.jpg",
+          "content": "无聊呢 找工作咯",
+          "name": "爱豆",
+          "location": "广州",
+          "sellcount": 60
         },
         {
-          "imgurl": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3107194385,822796524&fm=23&gp=0.jpg",
-          "content": "0000000005",
-          "count": 109
+          "imgurl": "asset:///images/1417054027704ACBE714_c.jpg",
+          "name": "天涯人",
+          "content": "和我聊天吧",
+          "location": "黄埔",
+          "sellcount": 50
         }
       ]
     },
     {
       "users": [
         {
-          "imgurl": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=133416024,2403659129&fm=26&gp=0.jpg",
-          "content": "00000004",
-          "count": 110
+          "imgurl": "asset:///images/atttt.jpg",
+          "name": "雪山飞狐",
+          "content": "感冒了！",
+          "location": "广州",
+          "sellcount": 80
+        }
+      ]
+    },
+    {
+      "users": [
+        {
+          "imgurl": "asset:///images/1409739308958A147099_c.jpg",
+          "name": "兔儿",
+          "content": "一人在异地，冬天到了，吃火锅一个人吃不完！",
+          "location": "中山",
+          "sellcount": 80
+        }
+      ]
+    },
+    {
+      "users": [
+        {
+          "imgurl": "asset:///images/at.jpg",
+          "name": "爱不起",
+           "bgurl": "asset:///images/123.jpeg",
+          "content": "喜欢自拍、看电影、偶尔旅游",
+          "location": "中山",
+          "sellcount": 80
+        }
+      ]
+    },
+    {
+      "users": [
+        {
+          "imgurl": "asset:///images/1424618439564A8A910D_c.jpg",
+          "content": "成功被你逗乐",
+          "name": "爱豆",
+
+          "location": "广州",
+          "sellcount": 60
+        },
+        {
+          "imgurl": "asset:///images/adt.jpg",
+          "name": "酸溜溜",
+          "content": "和我聊天吧",
+          "location": "黄埔",
+          "sellcount": 50
         }
       ]
     }
