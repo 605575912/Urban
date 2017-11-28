@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class CryptSharedPreferences implements SharedPreferences,IProguard.ProtectClassAndMembers {
+public class CryptSharedPreferences implements SharedPreferences {
     private static final String TAG = "CryptSharedPreferences"; 
     private static final String CRYPT_PREFIX = "@.";
     private static final String CRYPT_VERSION = "@$ver";

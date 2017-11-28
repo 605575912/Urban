@@ -4,7 +4,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.text.TextUtils;
 
-import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import com.squareup.lib.activity.PermissionsGrantActivity;
 import com.squareup.lib.annotation.KeepNotProguard;
@@ -12,7 +11,6 @@ import com.squareup.lib.http.CaheInterceptor;
 import com.squareup.lib.utils.AppLibUtils;
 import com.squareup.lib.utils.FileUtils;
 import com.squareup.lib.utils.GsonUtil;
-import com.squareup.lib.utils.IProguard;
 import com.squareup.lib.utils.LogUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -32,7 +30,6 @@ import java.nio.channels.FileChannel;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import java.util.EventObject;
 import java.util.HashMap;
 
 import javax.net.ssl.HostnameVerifier;
@@ -59,7 +56,7 @@ import okhttp3.ResponseBody;
  * Created by Administrator on 2017/05/25 0025.
  */
 
-public enum HttpUtils implements IProguard.ProtectClassAndMembers {
+public enum HttpUtils {
     INSTANCE;
     private OkHttpClient mOkHttpClient = new OkHttpClient();
 

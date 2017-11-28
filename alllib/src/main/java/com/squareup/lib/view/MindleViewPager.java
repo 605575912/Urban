@@ -330,6 +330,9 @@ public class MindleViewPager extends RelativeLayout {
 
     @KeepNotProguard
     public void setAdapter(LunAdapter lunAdapter, List list, int selected, int normal) {
+        if (this.lunAdapter != null) {
+            return;
+        }
         this.lunAdapter = lunAdapter;
         this.list = list;
         isdeotry = false;

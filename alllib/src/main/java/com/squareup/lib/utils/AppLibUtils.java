@@ -24,6 +24,7 @@ import android.view.WindowManager;
 
 import com.squareup.lib.BaseApplication;
 import com.squareup.lib.R;
+import com.squareup.lib.annotation.KeepNotProguard;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,37 +33,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Calendar;
 
 //import android.support.v7.graphics.Palette;
 
 /**
  * Created by Administrator on 2017/05/26 0026.
  */
-
-public class AppLibUtils implements IProguard.ProtectClassAndMembers {
+@KeepNotProguard
+public class AppLibUtils {
 
     private static String appVersionName;
     private static int currentVersionCode;
     private static String token;
 
 
-    public static String RECORDFILE = "record";
-    public static String IMAGEFILE = "image";
-    public static String VIDEOFILE = "video";
 
-
-    public static String getTodaty(long SuperDate) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(SuperDate);
-        int year = calendar.get(Calendar.YEAR);
-        int day = calendar.get(Calendar.DAY_OF_YEAR);
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(year);
-        stringBuilder.append(day);
-        String today = stringBuilder.toString();
-        return today;
-    }
 
     public static String getToken() {
         if (TextUtils.isEmpty(token)) {
@@ -565,13 +550,4 @@ public class AppLibUtils implements IProguard.ProtectClassAndMembers {
         return context.getResources().getBoolean(R.bool.isTablet);
     }
 
-    public static long getDayTime(long time) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(time);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
-        return calendar.getTimeInMillis();
-//        long max = calendar.getTimeInMillis() + 24 * 60 * 60 * 1000;
-    }
 }

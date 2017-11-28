@@ -29,7 +29,7 @@ package com.squareup.lib.utils;
  * Author: Christian d'Heureuse, Inventec Informatik AG, Zurich, Switzerland<br>
  * Multi-licensed: EPL / LGPL / GPL / AL / BSD.
  */
-public class Base64Coder implements IProguard.ProtectClassAndMembers{
+public class Base64Coder {
 
     // The line separator string of the operating system.
     private static final String systemLineSeparator = System.getProperty("line.separator");

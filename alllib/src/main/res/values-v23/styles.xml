@@ -14,6 +14,7 @@
         <item name="android:windowTranslucentNavigation">false</item>
         <!-- 给status栏设置透明颜色 -->
         <item name="android:statusBarColor">@android:color/transparent</item>
-
+        <!--&lt;!&ndash; true: status栏的图标和文字为黑色；false: sstatus栏的图标和文字为白色 &ndash;&gt;-->
+        <!--<item name="android:windowLightStatusBar">true</item>-->
     </style>
 </resources>

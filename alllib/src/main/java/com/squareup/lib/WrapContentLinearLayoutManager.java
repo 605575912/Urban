@@ -4,13 +4,11 @@ import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.squareup.lib.utils.IProguard;
-
 /**
  * Created by lzx on 2017/2/16.
  */
 
-public class WrapContentLinearLayoutManager extends LinearLayoutManager implements IProguard.ProtectClassAndMembers {
+public class WrapContentLinearLayoutManager extends LinearLayoutManager {
 
     //默认垂直方向
     public WrapContentLinearLayoutManager(Context context) {

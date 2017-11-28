@@ -7,7 +7,7 @@ import android.util.Log;
  * Created by Administrator on 2017/05/25 0025.
  */
 
-public class LogUtil implements IProguard.ProtectClassAndMembers{
+public class LogUtil {
     private static String TAG = "LogUtilLIB";
     private final static boolean islog = true;
 

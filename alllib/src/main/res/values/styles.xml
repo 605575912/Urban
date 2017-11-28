@@ -7,7 +7,15 @@
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowBackground">@android:color/white</item>
     </style>
+    <style name="LauncherActivityTheme" parent="Base.V7.Theme.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="windowNoTitle">true</item>
+        <item name="isLightTheme">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@drawable/welcome_bg</item>
+        <item name="android:fitsSystemWindows">true</item>
 
+    </style>
 
     <!--<style name="Theme.Translucent" parent="android:style/Theme.Translucent">-->
     <!--<item name="android:windowNoTitle">false</item>-->

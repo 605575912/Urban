@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DefaultDeniedPermissionHandler implements PermissionHandler, IProguard.ProtectClassAndMembers {
+public class DefaultDeniedPermissionHandler implements PermissionHandler {
     private Context mContext;
     private final static String DLG_REQ_SHOW_PERMISSION_HINT = "show.perms.hints";
     private final static String EXTRA_REQ_PERMISSIONS = "permissions";

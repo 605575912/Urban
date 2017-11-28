@@ -9,7 +9,7 @@ import com.squareup.lib.BaseApplication;
  * Created by lzx on 2017/05/27 0027.
  */
 
-public class ToastUtils implements IProguard.ProtectClassAndMembers{
+public class ToastUtils {
     static Toast toast;
     static Handler handler;
 

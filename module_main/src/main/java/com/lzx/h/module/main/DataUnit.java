@@ -1,14 +1,12 @@
 package com.lzx.h.module.main;
 
-import com.squareup.lib.utils.IProguard;
-
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/05/31 0031.
  */
 
-public class DataUnit implements IProguard.ProtectMembers {
+public class DataUnit {
     private int titletype = -1;//-1 w无  1  搜索
     private List<Card> cards;//大卡片
     private List<ItemData> items;//一组Item
