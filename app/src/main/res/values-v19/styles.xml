@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <style name="LauncherActivityTheme" parent="Base.V7.Theme.AppCompat">
@@ -7,7 +8,10 @@
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowBackground">@drawable/welcome_bg</item>
         <item name="android:fitsSystemWindows">true</item>
+        <!-- true: status栏会有一层阴影；false: status栏没有阴影-->
+        <item name="android:windowTranslucentStatus">false</item>
+        <!-- 使底部导航栏透明 -->
+        <item name="android:windowTranslucentNavigation">false</item>
 
     </style>
-
 </resources>
