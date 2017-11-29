@@ -72,6 +72,5 @@ dependencies {
     kapt "com.android.databinding:compiler:$project.databindingcompiler"
     kapt "com.alibaba:arouter-compiler:$project.aroutercompiler"
     testImplementation 'junit:junit:4.12'
-
     api project(':module_common')
 }

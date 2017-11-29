@@ -200,7 +200,7 @@ public class MainActivity extends TabBaseActivity implements View.OnClickListene
             SimpleDraweeView imageView = (SimpleDraweeView) ((LinearLayout) tabs_layout.getChildAt(i)).getChildAt(0);
             if (tabsBean.getIndex() == 1) {
                 transtatus = tabsBean.isTranstatus();
-                setStatus(transtatus);
+//                setStatus(transtatus,0);
                 viewPager.setCurrentItem(i, false);
                 ImageUtils.loadImage(tabsBean.getPressedimgurl(), imageView);
             } else {

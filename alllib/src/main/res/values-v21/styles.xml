@@ -16,4 +16,20 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
 
     </style>
+
+
+    <style name="AppTheme" parent="Base.V7.Theme.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="isLightTheme">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <!--<item name="android:fitsSystemWindows">true</item>-->
+        <item name="android:windowBackground">@android:color/black</item>
+        <!--&lt;!&ndash; 使底部导航栏透明 &ndash;&gt;-->
+        <!--<item name="android:windowTranslucentNavigation">false</item>-->
+        <!--&lt;!&ndash; 给status栏设置透明颜色 &ndash;&gt;-->
+        <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+    </style>
 </resources>

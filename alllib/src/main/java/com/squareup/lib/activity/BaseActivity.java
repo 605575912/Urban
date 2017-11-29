@@ -1,7 +1,6 @@
 package com.squareup.lib.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.graphics.Color;
@@ -9,14 +8,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v4.app.FragmentActivity;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-import com.squareup.lib.BaseApplication;
 import com.squareup.lib.BuildConfig;
 import com.squareup.lib.EventMainObject;
 import com.squareup.lib.EventThreadObject;
@@ -29,7 +26,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -54,51 +50,25 @@ public class BaseActivity extends FragmentActivity implements LayoutInterFace {
         return this;
     }
 
-    public void setStatus(boolean transtatus) {
+    public void setStatus(boolean transtatus, int bottom) {
         if (!isTranslucentStatus()) {
             return;
         }
         int h = transtatus ? 0 : AppLibUtils.getStatusBarHeight();
-        FrameLayout frameLayout = ((FrameLayout) getWindow().getDecorView().findViewById(android.R.id.content));
+        FrameLayout frameLayout = ((FrameLayout) getWindow().getDecorView().findViewById(Window.ID_ANDROID_CONTENT));
         if (frameLayout.getChildCount() > 0) {
             View view = frameLayout.findViewById(R.id.topView);
             if (view == null) {
-                frameLayout.getChildAt(0).setPadding(0, h, 0, getBottom());
+                frameLayout.getChildAt(0).setPadding(0, h, 0, bottom);
             } else {
                 view.setPadding(0, h, 0, 0);
-                frameLayout.getChildAt(0).setPadding(0, h, 0, getBottom());
+                frameLayout.getChildAt(0).setPadding(0, h, 0, bottom);
             }
         } else {
-            frameLayout.setPadding(0, h, 0, getBottom());
+            frameLayout.setPadding(0, h, 0, bottom);
         }
     }
 
-    int getBottom() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            return getVirtualBarHeigh();
-        }
-        return 0;
-    }
-    /**
-     * 获取虚拟功能键高度
-     */
-    private int getVirtualBarHeigh() {
-        int vh = 0;
-        WindowManager windowManager = (WindowManager) BaseApplication.getApplication().getSystemService(Context.WINDOW_SERVICE);
-        Display display = windowManager.getDefaultDisplay();
-        DisplayMetrics dm = new DisplayMetrics();
-        try {
-            @SuppressWarnings("rawtypes")
-            Class c = Class.forName("android.view.Display");
-            @SuppressWarnings("unchecked")
-            Method method = c.getMethod("getRealMetrics", DisplayMetrics.class);
-            method.invoke(display, dm);
-            vh = dm.heightPixels - windowManager.getDefaultDisplay().getHeight();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return vh;
-    }
     public boolean NeedEventBus() {
         return true;
     }
@@ -111,6 +81,20 @@ public class BaseActivity extends FragmentActivity implements LayoutInterFace {
         }
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         viewDataBinding = DataBindingUtil.setContentView(this, setFromLayoutID());
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT_WATCH) {
+            getWindow().getDecorView().setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+                @Override
+                public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+                        v.onApplyWindowInsets(insets);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            setStatus(isAllTranslucentStatus(), insets.getSystemWindowInsetBottom());
+                        }
+                    }
+                    return insets;
+                }
+            });
+        }
         if (isTranslucentStatus()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 Window window = getWindow();
@@ -130,9 +114,6 @@ public class BaseActivity extends FragmentActivity implements LayoutInterFace {
                 }
             }
 
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            setStatus(isAllTranslucentStatus());
         }
         if (NeedEventBus()) {
             EventBus.getDefault().register(this);
