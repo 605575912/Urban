@@ -10,7 +10,6 @@ import android.support.annotation.LayoutRes;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
@@ -55,7 +54,7 @@ public class BaseActivity extends FragmentActivity implements LayoutInterFace {
             return;
         }
         int h = transtatus ? 0 : AppLibUtils.getStatusBarHeight();
-        FrameLayout frameLayout = ((FrameLayout) getWindow().getDecorView().findViewById(Window.ID_ANDROID_CONTENT));
+        FrameLayout frameLayout = (getWindow().getDecorView().findViewById(Window.ID_ANDROID_CONTENT));
         if (frameLayout.getChildCount() > 0) {
             View view = frameLayout.findViewById(R.id.topView);
             if (view == null) {
@@ -96,8 +95,8 @@ public class BaseActivity extends FragmentActivity implements LayoutInterFace {
 //            });
 //        }
         if (isTranslucentStatus()) {
-            setStatus(isAllTranslucentStatus(), 0);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                setStatus(isAllTranslucentStatus(), 0);
                 Window window = getWindow();
                 window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
                         | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
